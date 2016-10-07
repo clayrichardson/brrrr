@@ -1,0 +1,3 @@
+answer1 = 1 + answer2
+answer2 = 2 + answer3
+answer3 = 2 + 2
