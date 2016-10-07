@@ -73,7 +73,7 @@ class EquationParser
       @left_hash[key] = result
       return_value.push("#{key} = #{result}")
     end
-    return_value.join("\n")
+    return_value.sort.join("\n")
   end
 
 end

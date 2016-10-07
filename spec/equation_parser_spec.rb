@@ -47,7 +47,7 @@ describe EquationParser do
       it 'does the math' do
         data = load_file('fixture5.txt')
         equation_parser = EquationParser.new(data)
-        answer = "offset = 7\nlocation = 16\norigin = 8\nrandom = 2"
+        answer = "location = 16\noffset = 7\norigin = 8\nrandom = 2"
         expect(equation_parser.evaluate).to eq(answer)
       end
     end
