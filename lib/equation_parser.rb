@@ -1,8 +1,6 @@
 require 'pry'
 require 'contracts'
 
-C = Contracts
-
 class EquationParser
   include Contracts::Core
   include Contracts::Builtin
