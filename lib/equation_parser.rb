@@ -1,9 +1,15 @@
 require 'pry'
+require 'contracts'
+
+C = Contracts
 
 class EquationParser
+  include Contracts::Core
+  include Contracts::Builtin
 
   attr_accessor :left_hash
 
+  Contract String => String
   def initialize(data)
     @left_hash = {}
     data.each_line do |line|
@@ -12,6 +18,7 @@ class EquationParser
     end
   end
 
+  Contract String => Array
   def split_on_equal(string)
     parsed_string = string.split('=')
     parsed_string.each do |item|
@@ -19,6 +26,7 @@ class EquationParser
     end
   end
 
+  Contract String => Array
   def split_on_operator(string)
     parsed_string = string.split('+')
     parsed_string.each do |item|
@@ -26,15 +34,18 @@ class EquationParser
     end
   end
 
+  Contract Or[String, Int] => Bool
   def is_integer(string)
     return true if string.is_a? Integer
     string =~ /^\d+$/ ? true : false
   end
 
+  Contract String => Or[String, Int]
   def resolve_variable(string)
     @left_hash[string]
   end
 
+  Contract Or[String, Int] => Or[String, Int]
   def compute(string)
     result = 0
     if is_integer(string)
@@ -52,6 +63,7 @@ class EquationParser
     return result
   end
 
+  Contract nil => String
   def evaluate
     return_value = []
     @left_hash.each do |key, value|
