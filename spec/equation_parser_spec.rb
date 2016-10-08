@@ -11,18 +11,20 @@ describe EquationParser do
     end
   end
 
-  context '#split_on_equal' do
-    it 'finds the left-hand side of the equation' do
-      result = EquationParser.new('').split_on_equal('stuff = 1 + 1')
-      expect(result[0]).to eq('stuff')
+  context '#split_on' do
+    context 'with equal' do
+      it 'finds the left-hand side of the equation' do
+        result = EquationParser.new('').split_on('stuff = 1 + 1', '=')
+        expect(result[0]).to eq('stuff')
+      end
     end
-  end
 
-  context '#split_on_operator' do
-    it 'creates an array of operands' do
-      result = EquationParser.new('').split_on_operator('1 + 1')
-      expect(result[0]).to eq('1')
-      expect(result[1]).to eq('1')
+    context 'with plus sign' do
+      it 'creates an array of operands' do
+        result = EquationParser.new('').split_on('1 + 1', '+')
+        expect(result[0]).to eq('1')
+        expect(result[1]).to eq('1')
+      end
     end
   end
 

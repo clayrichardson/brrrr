@@ -11,22 +11,14 @@ class EquationParser
   def initialize(data)
     @left_hash = {}
     data.each_line do |line|
-      split_equation = self.split_on_equal(line)
+      split_equation = self.split_on(line, '=')
       @left_hash[split_equation[0]] = split_equation[1]
     end
   end
 
-  Contract String => Array
-  def split_on_equal(string)
-    parsed_string = string.split('=')
-    parsed_string.each do |item|
-      item.strip!
-    end
-  end
-
-  Contract String => Array
-  def split_on_operator(string)
-    parsed_string = string.split('+')
+  Contract String, String => Array
+  def split_on(string, character)
+    parsed_string = string.split(character)
     parsed_string.each do |item|
       item.strip!
     end
@@ -54,7 +46,7 @@ class EquationParser
       return string
     elsif  contains_operator(string)
       puts "string is: #{string}"
-      expanded_string = split_on_operator(string)
+      expanded_string = split_on(string, '+')
       expanded_string.each do |item|
         if is_integer(item)
           result += item.to_i
@@ -73,7 +65,7 @@ class EquationParser
     return_value = []
     @left_hash.each do |key, value|
       result = 0
-      operation_array = split_on_operator(value)
+      operation_array = split_on(value, '+')
       operation_array.each do |operand|
         result += compute(operand.to_s).to_i
       end
