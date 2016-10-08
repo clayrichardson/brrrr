@@ -15,17 +15,17 @@ describe EquationParser do
 
     it 'does the math with simple input' do
       stdout, stderr, status = run_cli('fixture1.txt')
-      expect(stdout).to eq("answer1 = 2\nanswer2 = 4")
+      expect(stdout).to eq("answer1 = 2\nanswer2 = 4\n")
     end
 
     it 'does the math with some variables' do
       stdout, stderr, status = run_cli('fixture2.txt')
-      expect(stdout).to eq("answer1 = 5\nanswer2 = 4")
+      expect(stdout).to eq("answer1 = 5\nanswer2 = 4\n")
     end
 
     it 'does the math with the sample input' do
-      stdout, stderr, status = run_cli('fixture2.txt')
-      answer = "location = 16\noffset = 7\norigin = 8\nrandom = 2"
+      stdout, stderr, status = run_cli('fixture5.txt')
+      answer = "location = 16\noffset = 7\norigin = 8\nrandom = 2\n"
       expect(stdout).to eq(answer)
     end
   end
