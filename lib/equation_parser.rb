@@ -32,33 +32,40 @@ class EquationParser
     end
   end
 
-  Contract Or[String, Int] => Bool
+  Contract String => Bool
   def is_integer(string)
     return true if string.is_a? Integer
     string =~ /^\d+$/ ? true : false
   end
 
-  Contract String => Or[String, Int]
+  Contract String => String
   def resolve_variable(string)
-    @left_hash[string]
+    @left_hash[string].to_s
   end
 
-  Contract Or[String, Int] => Or[String, Int]
+  def contains_operator(string)
+    string =~ /[+]+/ ? true : false
+  end
+
+  Contract String => String
   def compute(string)
     result = 0
     if is_integer(string)
-      return string.to_i
-    else 
+      return string
+    elsif  contains_operator(string)
+      puts "string is: #{string}"
       expanded_string = split_on_operator(string)
-    end
-    expanded_string.each do |item|
-      if is_integer(item)
-        result += item.to_i
-      else 
-        result += compute(resolve_variable(item))
+      expanded_string.each do |item|
+        if is_integer(item)
+          result += item.to_i
+        else 
+          result += compute(resolve_variable(item)).to_i
+        end
       end
+    else
+      result += compute(resolve_variable(string)).to_i
     end
-    return result
+    return result.to_s
   end
 
   Contract nil => String
@@ -68,7 +75,7 @@ class EquationParser
       result = 0
       operation_array = split_on_operator(value)
       operation_array.each do |operand|
-        result += compute(operand)
+        result += compute(operand.to_s).to_i
       end
       @left_hash[key] = result
       return_value.push("#{key} = #{result}")

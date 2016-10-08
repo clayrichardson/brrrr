@@ -65,11 +65,17 @@ describe EquationParser do
         expect(result).to be false
       end
     end
-    context 'with integers' do
-      it 'returns true if integer' do
-        result = EquationParser.new('').is_integer(1)
+  end
+
+  context '#contains_operator' do
+    it 'returns true if string contains operator' do
+        result = EquationParser.new('').contains_operator('1 + 1')
         expect(result).to be true
-      end
+    end
+
+    it 'returns false if string does not contain operator' do
+        result = EquationParser.new('').contains_operator('variable')
+        expect(result).to be false
     end
   end
 
@@ -86,21 +92,21 @@ describe EquationParser do
       it 'resolves and computes the value of the string' do
         data = load_file('fixture2.txt')
         equation_parser = EquationParser.new(data)
-        expect(equation_parser.compute('2 + 2')).to eq(4)
+        expect(equation_parser.compute('2 + 2')).to eq('4')
       end
     end
     context 'with 2 levels of resolution' do
       it 'resolves and computes the value of the string' do
         data = load_file('fixture3.txt')
         equation_parser = EquationParser.new(data)
-        expect(equation_parser.compute('1 + answer2')).to eq(7)
+        expect(equation_parser.compute('1 + answer2')).to eq('7')
       end
     end
     context 'with 3 levels of resolution' do
       it 'resolves and computes the value of the string' do
         data = load_file('fixture4.txt')
         equation_parser = EquationParser.new(data)
-        expect(equation_parser.compute('1 + answer2')).to eq(9)
+        expect(equation_parser.compute('1 + answer2')).to eq('9')
       end
     end
   end
