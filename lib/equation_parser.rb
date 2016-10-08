@@ -45,7 +45,6 @@ class EquationParser
     if is_integer(string)
       return string
     elsif  contains_operator(string)
-      puts "string is: #{string}"
       expanded_string = split_on(string, '+')
       expanded_string.each do |item|
         if is_integer(item)
