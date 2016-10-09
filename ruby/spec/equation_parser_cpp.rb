@@ -4,7 +4,7 @@ describe EquationParser do
   context 'the cpp cli' do
     it 'returns an error if no filename is given' do
       stdout, stderr, status = run_cli("")
-      expect(stderr).to eq("Usage: EquationParser <path_to_input_file>\n")
+      expect(stderr).to eq("Usage: equationparser <path_to_input_file>\n")
     end
 
     it 'returns an error if no data was read from file' do
