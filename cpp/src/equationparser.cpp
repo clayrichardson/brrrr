@@ -38,11 +38,6 @@ vector<string> EquationParser::splitOnChar(string line, char character) {
     while(getline(ss_line, segment, character)) {
         seglist.push_back(trim(segment));
     }
-    stringstream output;
-    output << "[";
-    for (auto item: seglist) {
-        output << item << ",";
-    }
     return seglist;
 }
 
