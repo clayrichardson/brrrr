@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe EquationParser do
-
   context 'the cli' do
     it 'returns an error if no filename is given' do
       stdout, stderr, status = run_cli("")
@@ -28,6 +27,7 @@ describe EquationParser do
       answer = "location = 16\noffset = 7\norigin = 8\nrandom = 2\n"
       expect(stdout).to eq(answer)
     end
+
     it 'does the math with the crazy input' do
       stdout, stderr, status = run_cli('fixture6.txt')
       answer = "bacon = 285\ncrazy = 303\nit = 35\nitems = 180\nkeep = 45\nlocation = 319\noffset = 7\norigin = 8\nrandom = 2\nstuff = 35\nthings = 35\n"

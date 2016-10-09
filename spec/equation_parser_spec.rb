@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe EquationParser do
-
   context '#initialize' do
     it 'parses the data into a dictionary' do
       data = load_file('fixture1.txt')
@@ -106,6 +105,7 @@ describe EquationParser do
         expect(equation_parser.compute('2 + 2')).to eq('4')
       end
     end
+
     context 'with 2 levels of resolution' do
       it 'resolves and computes the value of the string' do
         data = load_file('fixture3.txt')
@@ -113,6 +113,7 @@ describe EquationParser do
         expect(equation_parser.compute('1 + answer2')).to eq('7')
       end
     end
+
     context 'with 3 levels of resolution' do
       it 'resolves and computes the value of the string' do
         data = load_file('fixture4.txt')
