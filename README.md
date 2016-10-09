@@ -8,7 +8,7 @@ I was good to go with 5 fixtures, but I decided to add a more crazy 6th fixture 
 I'm not sure why this did not cause a compiler error or runtime error at that specific line, since the type is `map<string, string>`. Instead, it caused a segfault from all the recursions. `(╯ಥ╭╮ರೃ)╯︵ ┻━┻ `
 
 # Optimizations
-Prolly an AST or something like that.
+Prolly an AST or something like that. Passing all these strings around might not help with performance, but it makes the code easier to reason about.
 
 # Requirements
 1. GNU bash, version 3.2.57(1)-release (x86_64-apple-darwin14)
@@ -31,7 +31,7 @@ If you want to turn down and skip all the cool ruby stuff, just run:
 ./ihateyou.sh
 ```
 
-#Output
+# Output
 You should see something like:
 
 ```
@@ -243,3 +243,7 @@ things = 35
 + popd
 ~/twerkspace/tesla
 ```
+
+# Citations
+
+`http://stackoverflow.com/`
