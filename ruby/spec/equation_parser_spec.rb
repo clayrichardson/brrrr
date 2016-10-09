@@ -32,7 +32,7 @@ describe EquationParser do
       it 'does the math' do
         data = load_file('fixture1.txt')
         equation_parser = EquationParser.new(data)
-        expect(equation_parser.evaluate).to eq("answer1 = 2\nanswer2 = 4")
+        expect(equation_parser.evaluate).to eq("answer1 = 2\nanswer2 = 4\n")
       end
     end
 
@@ -40,7 +40,7 @@ describe EquationParser do
       it 'does the math' do
         data = load_file('fixture2.txt')
         equation_parser = EquationParser.new(data)
-        expect(equation_parser.evaluate).to eq("answer1 = 5\nanswer2 = 4")
+        expect(equation_parser.evaluate).to eq("answer1 = 5\nanswer2 = 4\n")
       end
     end
 
@@ -48,7 +48,7 @@ describe EquationParser do
       it 'does the math' do
         data = load_file('fixture5.txt')
         equation_parser = EquationParser.new(data)
-        answer = "location = 16\noffset = 7\norigin = 8\nrandom = 2"
+        answer = "location = 16\noffset = 7\norigin = 8\nrandom = 2\n"
         expect(equation_parser.evaluate).to eq(answer)
       end
     end
@@ -57,7 +57,7 @@ describe EquationParser do
       it 'does the math' do
         data = load_file('fixture6.txt')
         equation_parser = EquationParser.new(data)
-        answer = "bacon = 285\ncrazy = 303\nit = 35\nitems = 180\nkeep = 45\nlocation = 319\noffset = 7\norigin = 8\nrandom = 2\nstuff = 35\nthings = 35"
+        answer = "bacon = 285\ncrazy = 303\nit = 35\nitems = 180\nkeep = 45\nlocation = 319\noffset = 7\norigin = 8\nrandom = 2\nstuff = 35\nthings = 35\n"
         expect(equation_parser.evaluate).to eq(answer)
       end
     end

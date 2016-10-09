@@ -35,6 +35,7 @@ class EquationParser
     @left_hash[string].to_s
   end
 
+  Contract String => Bool
   def contains_operator(string)
     string =~ /[+]+/ ? true : false
   end
@@ -71,7 +72,6 @@ class EquationParser
       @left_hash[key] = result
       return_value.push("#{key} = #{result}")
     end
-    return_value.sort.join("\n")
+    "#{return_value.sort.join("\n")}\n"
   end
-
 end

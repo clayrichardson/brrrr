@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe EquationParser do
-  context 'the cli' do
+  context 'the cpp cli' do
     it 'returns an error if no filename is given' do
       stdout, stderr, status = run_cli("")
       expect(stderr).to eq("Usage: EquationParser <path_to_input_file>\n")

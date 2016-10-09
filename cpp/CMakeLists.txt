@@ -1,0 +1,6 @@
+cmake_minimum_required(VERSION 3.6 FATAL_ERROR)
+project(EquationParser)
+include_directories(./includes)
+# add_executable(EquationParser ./src/main.cpp ./src/equationparser.cpp ./includes/equationparser.h)
+add_executable(equationparser ./src/main.cpp ./src/equationparser.cpp)
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")

@@ -1,5 +1,0 @@
-cmake_minimum_required(VERSION 3.1 FATAL_ERROR)
-project(EquationParser)
-add_executable(EquationParser equationparser.cpp)
-set (CMAKE_CXX_STANDARD 11)
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")

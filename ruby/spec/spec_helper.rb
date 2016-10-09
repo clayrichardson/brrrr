@@ -12,9 +12,9 @@ end
 
 def run_cli(fixture)
   if fixture == ""
-    stdout, stderr, status = Open3.capture3("./EquationParser")
+    stdout, stderr, status = Open3.capture3("../cpp/EquationParser")
   else
-    command = "./EquationParser ./fixtures/#{fixture}"
+    command = "../cpp/EquationParser ./fixtures/#{fixture}"
     puts "running command: #{command}"
     stdout, stderr, status = Open3.capture3(command)
   end
