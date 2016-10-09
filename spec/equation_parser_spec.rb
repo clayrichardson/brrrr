@@ -53,6 +53,15 @@ describe EquationParser do
         expect(equation_parser.evaluate).to eq(answer)
       end
     end
+
+    context 'with the crazy input' do
+      it 'does the math' do
+        data = load_file('fixture6.txt')
+        equation_parser = EquationParser.new(data)
+        answer = "bacon = 285\ncrazy = 303\nit = 35\nitems = 180\nkeep = 45\nlocation = 319\noffset = 7\norigin = 8\nrandom = 2\nstuff = 35\nthings = 35"
+        expect(equation_parser.evaluate).to eq(answer)
+      end
+    end
   end
 
   context '#is_integer' do

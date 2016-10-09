@@ -1,0 +1,11 @@
+offset = 4 + random + 1
+location 		= 1 				+ origin + offset + crazy
+origin = 3	+ 5
+random = 2
+crazy = origin + random + origin + bacon
+bacon 				= stuff 		+ things + stuff + items
+items = keep + it + 				100
+keep = origin + random + 		it
+it = random + offset      + random + 3						+ offset + offset + offset
+stuff = 				things
+things = it
