@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.6 FATAL_ERROR)
+cmake_minimum_required(VERSION 3.1 FATAL_ERROR)
 project(EquationParser)
 include_directories(./includes)
 # add_executable(EquationParser ./src/main.cpp ./src/equationparser.cpp ./includes/equationparser.h)
