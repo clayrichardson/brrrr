@@ -10,13 +10,13 @@ I'm not sure why this did not cause a compiler error or runtime error at that sp
 # Optimizations
 Prolly an AST or something like that. Passing all these strings around might not help with performance, but it makes the code easier to reason about.
 
-# Requirements
-1. GNU bash, version 3.2.57(1)-release (x86_64-apple-darwin14)
-1. ruby 2.3.0p0 (2015-12-25 revision 53290) [x86_64-darwin14]
+# Requirements (tested on OSX & Ubuntu)
+1. GNU bash, version 3.2.57(1)-release (x86_64-apple-darwin14) or GNU bash, version 4.3.42(1)-release (x86_64-pc-linux-gnu)
+1. ruby 2.3.0p0 (2015-12-25 revision 53290) [x86_64-darwin14] or ruby 2.3.0p0 (2015-12-25 revision 53290) [x86_64-linux]
   * This is for the unit and integration tests
 1. buncha gems (this is installed with the `install_deps.sh` script)
 1. RVM, chruby or some other way of keeping your system ruby unmucked. Or not. `#YOLO`
-1. cmake 3.6.1
+1. cmake 3.6.1 or 3.2.2
 
 # Building
 Once you have ruby-2.3.0 and a gemset to isolate your system ruby, just run:
@@ -35,7 +35,7 @@ If you want to turn down and skip all the cool ruby stuff, just run:
 You should see something like:
 
 ```
-herpderp:tesla clayrichardson$ ./fml.sh
+ubuntu@ubuntu-VirtualBox:~/twerkspace/kdffkjkjwerjiovokweri$ ./fml.sh 
 + echo 'TURN DOWN FOR WHAT'
 TURN DOWN FOR WHAT
 + source ./install_deps.sh
@@ -43,7 +43,7 @@ TURN DOWN FOR WHAT
 ++ echo 'installing ruby dependencies...'
 installing ruby dependencies...
 ++ pushd ./ruby
-~/twerkspace/tesla/ruby ~/twerkspace/tesla
+~/twerkspace/kdffkjkjwerjiovokweri/ruby ~/twerkspace/kdffkjkjwerjiovokweri
 ++ gem install bundle
 Successfully installed bundle-0.0.1
 Parsing documentation for bundle-0.0.1
@@ -67,7 +67,7 @@ Using slop 3.6.0
 Using thor 0.19.1
 Using guard-compat 1.2.1
 Using rspec-support 3.5.0
-Using bundler 1.13.2
+Using bundler 1.13.3
 Using rb-inotify 0.9.7
 Using notiffany 0.1.0
 Using pry 0.10.4
@@ -82,22 +82,22 @@ Using guard-rspec 4.7.2
 Bundle complete! 4 Gemfile dependencies, 29 gems now installed.
 Use `bundle show [gemname]` to see where a bundled gem is installed.
 ++ popd
-~/twerkspace/tesla
+~/twerkspace/kdffkjkjwerjiovokweri
 + source ./generate.sh
 ++ set -ex
 ++ echo 'cleaning ./cpp/build...'
 cleaning ./cpp/build...
 ++ rm -rv './cpp/build/*'
-rm: ./cpp/build/*: No such file or directory
+rm: cannot remove ‘./cpp/build/*’: No such file or directory
 ++ echo 'nice and clean :)'
 nice and clean :)
 ++ echo 'generating cmake pedantry...'
 generating cmake pedantry...
 ++ pushd ./cpp/build/
-~/twerkspace/tesla/cpp/build ~/twerkspace/tesla
+~/twerkspace/kdffkjkjwerjiovokweri/cpp/build ~/twerkspace/kdffkjkjwerjiovokweri
 ++ cmake .. -DCMAKE_C_COMPILER=/usr/bin/gcc -DCMAKE_CXX_COMPILER=/usr/bin/g++ -G 'Unix Makefiles'
--- The C compiler identification is AppleClang 7.0.2.7000181
--- The CXX compiler identification is AppleClang 7.0.2.7000181
+-- The C compiler identification is GNU 5.2.1
+-- The CXX compiler identification is GNU 5.2.1
 -- Check for working C compiler: /usr/bin/gcc
 -- Check for working C compiler: /usr/bin/gcc -- works
 -- Detecting C compiler ABI info
@@ -112,28 +112,28 @@ generating cmake pedantry...
 -- Detecting CXX compile features - done
 -- Configuring done
 -- Generating done
--- Build files have been written to: /Users/clayrichardson/twerkspace/tesla/cpp/build
+-- Build files have been written to: /home/ubuntu/twerkspace/kdffkjkjwerjiovokweri/cpp/build
 ++ popd
-~/twerkspace/tesla
+~/twerkspace/kdffkjkjwerjiovokweri
 + source ./build.sh
 ++ set -ex
 ++ echo 'building cpp files...'
 building cpp files...
 ++ pushd ./cpp/build
-~/twerkspace/tesla/cpp/build ~/twerkspace/tesla
+~/twerkspace/kdffkjkjwerjiovokweri/cpp/build ~/twerkspace/kdffkjkjwerjiovokweri
 ++ make clean
 ++ make
-Scanning dependencies of target EquationParser
-[ 33%] Building CXX object CMakeFiles/EquationParser.dir/src/main.cpp.o
-[ 66%] Building CXX object CMakeFiles/EquationParser.dir/src/equationparser.cpp.o
-[100%] Linking CXX executable EquationParser
-[100%] Built target EquationParser
+Scanning dependencies of target equationparser
+[ 50%] Building CXX object CMakeFiles/equationparser.dir/src/main.cpp.o
+[100%] Building CXX object CMakeFiles/equationparser.dir/src/equationparser.cpp.o
+Linking CXX executable equationparser
+[100%] Built target equationparser
 ++ popd
-~/twerkspace/tesla
+~/twerkspace/kdffkjkjwerjiovokweri
 + source ./test.sh
 ++ set -ex
 ++ pushd ./ruby
-~/twerkspace/tesla/ruby ~/twerkspace/tesla
+~/twerkspace/kdffkjkjwerjiovokweri/ruby ~/twerkspace/kdffkjkjwerjiovokweri
 ++ echo 'running ruby tests to shrek the ruby code...'
 running ruby tests to shrek the ruby code...
 ++ bundle exec rspec --color ./spec/
@@ -172,7 +172,7 @@ EquationParser
     with 3 levels of resolution
       resolves and computes the value of the string
 
-Finished in 0.00963 seconds (files took 0.26838 seconds to load)
+Finished in 0.00881 seconds (files took 0.22598 seconds to load)
 15 examples, 0 failures
 
 ++ echo 'running ruby tests to shrek the cpp executable ...'
@@ -182,53 +182,53 @@ running ruby tests to shrek the cpp executable ...
 EquationParser
   the cpp cli
     returns an error if no filename is given
-running command: ../cpp/EquationParser ./fixtures/not_a_file.txt
+running command: ../cpp/build/equationparser ./fixtures/not_a_file.txt
     returns an error if no data was read from file
-running command: ../cpp/EquationParser ./fixtures/fixture1.txt
+running command: ../cpp/build/equationparser ./fixtures/fixture1.txt
     does the math with simple input
-running command: ../cpp/EquationParser ./fixtures/fixture2.txt
+running command: ../cpp/build/equationparser ./fixtures/fixture2.txt
     does the math with some variables
-running command: ../cpp/EquationParser ./fixtures/fixture5.txt
+running command: ../cpp/build/equationparser ./fixtures/fixture5.txt
     does the math with the sample input
-running command: ../cpp/EquationParser ./fixtures/fixture6.txt
+running command: ../cpp/build/equationparser ./fixtures/fixture6.txt
     does the math with the crazy input
 
-Finished in 0.02851 seconds (files took 0.254 seconds to load)
+Finished in 0.10498 seconds (files took 0.23436 seconds to load)
 6 examples, 0 failures
 
 ++ popd
-~/twerkspace/tesla
+~/twerkspace/kdffkjkjwerjiovokweri
 + echo 'looks good, now running with fixtures...'
 looks good, now running with fixtures...
 + pushd ./cpp/build
-~/twerkspace/tesla/cpp/build ~/twerkspace/tesla
+~/twerkspace/kdffkjkjwerjiovokweri/cpp/build ~/twerkspace/kdffkjkjwerjiovokweri
 + for i in '../../ruby/fixtures/fixture{1..6}.txt'
-+ ./EquationParser ../../ruby/fixtures/fixture1.txt
++ ./equationparser ../../ruby/fixtures/fixture1.txt
 answer1 = 2
 answer2 = 4
 + for i in '../../ruby/fixtures/fixture{1..6}.txt'
-+ ./EquationParser ../../ruby/fixtures/fixture2.txt
++ ./equationparser ../../ruby/fixtures/fixture2.txt
 answer1 = 5
 answer2 = 4
 + for i in '../../ruby/fixtures/fixture{1..6}.txt'
-+ ./EquationParser ../../ruby/fixtures/fixture3.txt
++ ./equationparser ../../ruby/fixtures/fixture3.txt
 answer1 = 7
 answer2 = 6
 answer3 = 4
 + for i in '../../ruby/fixtures/fixture{1..6}.txt'
-+ ./EquationParser ../../ruby/fixtures/fixture4.txt
++ ./equationparser ../../ruby/fixtures/fixture4.txt
 answer1 = 9
 answer2 = 8
 answer3 = 6
 answer4 = 4
 + for i in '../../ruby/fixtures/fixture{1..6}.txt'
-+ ./EquationParser ../../ruby/fixtures/fixture5.txt
++ ./equationparser ../../ruby/fixtures/fixture5.txt
 location = 16
 offset = 7
 origin = 8
 random = 2
 + for i in '../../ruby/fixtures/fixture{1..6}.txt'
-+ ./EquationParser ../../ruby/fixtures/fixture6.txt
++ ./equationparser ../../ruby/fixtures/fixture6.txt
 bacon = 285
 crazy = 303
 it = 35
@@ -241,9 +241,7 @@ random = 2
 stuff = 35
 things = 35
 + popd
-~/twerkspace/tesla
+~/twerkspace/kdffkjkjwerjiovokweri
++ echo 'thank you based god'
+thank you based god
 ```
-
-# Citations
-
-`http://stackoverflow.com/`
